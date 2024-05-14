@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using TechnicalTestOf2C2P.Models.WeatherForecast;
 
 namespace TechnicalTestOf2C2P.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
