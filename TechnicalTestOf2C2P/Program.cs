@@ -1,13 +1,15 @@
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using TechnicalTestOf2C2P.Contexts;
+using TechnicalTestOf2C2P.Repositories;
+using TechnicalTestOf2C2P.Repositories.IRepositories;
 using TechnicalTestOf2C2P.Services;
 using TechnicalTestOf2C2P.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
     var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -15,6 +17,13 @@ builder.Services.AddSwaggerGen(c => {
     c.IncludeXmlComments(filePath);
 });
 
+// Context
+builder.Services.AddDbContext<DbContextApplication>();
+
+// Repositories
+builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
+
+// Services
 builder.Services.AddScoped<ITransactionsService, TransactionsService>();
 
 var app = builder.Build();

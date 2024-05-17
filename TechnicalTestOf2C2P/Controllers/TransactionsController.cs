@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestOf2C2P.Extensions;
 using TechnicalTestOf2C2P.Models.Common;
 using TechnicalTestOf2C2P.Models.Transactions;
 using TechnicalTestOf2C2P.Services.Interfaces;
@@ -34,7 +35,9 @@ namespace TechnicalTestOf2C2P.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseModel<object>() { IsSuccess = false, Message = ex.Message});
+                var errors = LogMessage.Get();
+                LogExtension.WriteLog(ex.Message);
+                return BadRequest(new ResponseModel<object>(ex.Message) { Data = errors });
             }
         }
 
@@ -56,7 +59,9 @@ namespace TechnicalTestOf2C2P.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseModel<object>() { IsSuccess = false, Message = ex.Message });
+                var errors = LogMessage.Get();
+                LogExtension.WriteLog(ex.Message);
+                return BadRequest(new ResponseModel<object>(ex.Message) { Data = errors });
             }
         }
     }

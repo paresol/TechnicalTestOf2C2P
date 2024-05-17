@@ -1,6 +1,0 @@
-@TechnicalTestOf2C2P_HostAddress = http://localhost:5129
-
-GET {{TechnicalTestOf2C2P_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
