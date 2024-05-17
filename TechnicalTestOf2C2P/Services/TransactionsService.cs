@@ -91,6 +91,24 @@ namespace TechnicalTestOf2C2P.Services
 			}
         }
 
+        public ResponseModel<List<ResponseGetAllTransactionsModel>> GetAllTransactions(string currency, string dateFrom, string dateTo, string status)
+        {
+            try
+            {
+                var response = new ResponseModel<List<ResponseGetAllTransactionsModel>>();
+                response.Data = _transactionsRepository.GetAllTransactions(currency, dateFrom, dateTo, status);
+                if (response.Data.Count == 0)
+                {
+                    response.Message = "Data not found";
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void ReadCSV(IFormFile file, ref List<Transactions> transactions)
         {
             try

@@ -51,11 +51,14 @@ namespace TechnicalTestOf2C2P.Controllers
         /// <param name="dateTo"></param>
         /// <param name="status"></param>
         /// <returns></returns>
-        public IActionResult GetAllTransactions(string currency, string dateFrom, string dateTo, string status)
+        [ProducesResponseType(typeof(ResponseModel<ResponseGetAllTransactionsModel>), 200)]
+        [ProducesResponseType(typeof(ResponseModel<object>), 400)]
+        public IActionResult GetAllTransactions(string currency = "", string dateFrom = "", string dateTo = "", string status = "")
         {
             try
             {
-                return Ok();
+                var response = _trans.GetAllTransactions(currency, dateFrom, dateTo, status);
+                return Ok(response);
             }
             catch (Exception ex)
             {
