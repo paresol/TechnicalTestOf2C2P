@@ -73,7 +73,7 @@ namespace TechnicalTestOf2C2P.Services
                             }
                             else
                             {
-                                response.Message = "Can't insert data with something wrong";
+                                throw new Exception("Can't insert data with something wrong");
                             }
                         }
                         else

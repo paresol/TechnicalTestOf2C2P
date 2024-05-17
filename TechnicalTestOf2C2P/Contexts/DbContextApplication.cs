@@ -19,39 +19,6 @@ namespace TechnicalTestOf2C2P.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region CurrencyMaster
-            modelBuilder.Entity<CurrencyMaster>(entity =>
-            {
-                entity
-                .HasKey(e => e.Id);
-
-                entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .UseIdentityColumn();
-
-                entity.Property(e => e.Code)
-                    .HasColumnType("varchar(3)")
-                    .IsRequired(false);
-
-                entity.Property(e => e.CreatedDate)
-                     .HasColumnType("smalldatetime")
-                     .HasDefaultValueSql("getdate()")
-                     .IsRequired(false);
-
-                entity.Property(e => e.CreatedBy)
-                    .HasColumnType("varchar(10)")
-                    .IsRequired(false);
-
-                entity.Property(e => e.UpdatedDate)
-                    .HasColumnType("smalldatetime")
-                    .IsRequired(false);
-
-                entity.Property(e => e.UpdatedBy)
-                    .HasColumnType("varchar(10)")
-                    .IsRequired(false);
-            });
-            #endregion
-
             #region Status
             modelBuilder.Entity<StatusMaster>(entity =>
             {
@@ -133,7 +100,6 @@ namespace TechnicalTestOf2C2P.Contexts
             #endregion
         }
 
-        public DbSet<CurrencyMaster> CurrencyMaster { get; set; }
         public DbSet<StatusMaster> StatusMaster { get; set; }
         public DbSet<Transactions> Transactions { get; set; }
     }

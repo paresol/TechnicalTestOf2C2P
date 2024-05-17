@@ -26,7 +26,7 @@ namespace TechnicalTestOf2C2P.Repositories
             }
             catch (Exception ex)
             {
-                LogMessage.Add(ex.InnerException.ToString());
+                LogMessage.Add(ex.InnerException.Message.ToString());
                 return false;
             }
         }
